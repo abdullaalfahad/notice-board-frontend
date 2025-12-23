@@ -9,15 +9,24 @@ import { useUpdateNoticeStatus } from '@/hooks/use-update-notice-status';
 import { cn } from '@/lib/utils';
 import { Notice } from '@/types/notice-types';
 import { Edit, Eye, MoreVertical } from 'lucide-react';
+import { useState } from 'react';
 import { Button } from '../ui/button';
 import { Switch } from '../ui/switch';
+import { NoticeViewDialog } from './view-dialog';
 
 export const TableActions = ({ notice }: { notice: Notice }) => {
+  const [isOpenViewDialog, setIsOpenViewDialog] = useState(false);
+
   const { mutate: updateStatus } = useUpdateNoticeStatus();
 
   return (
     <div className="flex items-center gap-1">
-      <Button variant="ghost" size="icon" className="h-8 w-8 text-gray-600 hover:text-gray-900">
+      <Button
+        variant="ghost"
+        size="icon"
+        className="h-8 w-8 text-gray-600 hover:text-gray-900"
+        onClick={() => setIsOpenViewDialog(true)}
+      >
         <Eye className="size-5" />
       </Button>
       <Popover>
@@ -64,6 +73,8 @@ export const TableActions = ({ notice }: { notice: Notice }) => {
           <DropdownMenuItem className="text-red-600">Delete</DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
+
+      <NoticeViewDialog notice={notice} isOpen={isOpenViewDialog} setIsOpen={setIsOpenViewDialog} />
     </div>
   );
 };
