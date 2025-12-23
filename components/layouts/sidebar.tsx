@@ -80,7 +80,7 @@ const navItems: NavItem[] = [
   {
     title: 'Notice Board',
     icon: Newspaper,
-    href: '/notice-board',
+    href: '/',
   },
   {
     title: 'Activity Log',
@@ -109,7 +109,7 @@ export function Sidebar() {
     );
   };
 
-  const isActive = (href: string) => href === '/notice-board';
+  const isActive = (href: string) => href === '/';
   const isParentActive = (item: NavItem) => {
     if (item.children) {
       return item.children.some((child) => pathname === child.href);
