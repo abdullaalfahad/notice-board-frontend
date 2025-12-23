@@ -1,5 +1,6 @@
 import { Sidebar } from '@/components/layouts/sidebar';
 import { Topbar } from '@/components/layouts/topbar';
+import QueryProvider from '@/providers/query-provider';
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
@@ -31,7 +32,9 @@ export default function RootLayout({
           <Sidebar />
           <div className="flex flex-1 flex-col overflow-hidden">
             <Topbar />
-            <main className="flex-1 overflow-y-auto bg-background">{children}</main>
+            <QueryProvider>
+              <main className="flex-1 overflow-y-auto bg-[#F5F6FA] px-5 py-7">{children}</main>
+            </QueryProvider>
           </div>
         </div>
       </body>
