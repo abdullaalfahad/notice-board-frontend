@@ -1,11 +1,4 @@
-import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
 import {
   Table,
   TableBody,
@@ -15,30 +8,11 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { cn } from '@/lib/utils';
-import { Edit, Eye, MoreVertical } from 'lucide-react';
+import { Notice } from '@/types/notice-types';
 import { useState } from 'react';
+import { TableActions } from './table-actions';
 
-interface Notice {
-  _id: string;
-  targetType: string;
-  noticeTitle: string;
-  employeeId?: string;
-  employeeName?: string;
-  position?: string;
-  noticeType: string;
-  publishDate: string;
-  noticeBody: string;
-  attachments: string[];
-  status: string;
-  createdAt: string;
-  updatedAt: string;
-}
-
-interface NoticeTableProps {
-  notices: Notice[];
-}
-
-export function NoticeTable({ notices }: NoticeTableProps) {
+export function NoticeTable({ notices }: { notices: Notice[] }) {
   const [selectedRows, setSelectedRows] = useState<Set<string>>(new Set());
 
   const formatDate = (dateString: string) => {
@@ -92,7 +66,7 @@ export function NoticeTable({ notices }: NoticeTableProps) {
     setSelectedRows(newSelected);
   };
 
-  const isAllSelected = notices.length > 0 && selectedRows.size === notices.length;
+  const isAllSelected = notices?.length > 0 && selectedRows?.size === notices?.length;
 
   return (
     <div className="rounded-lg border border-gray-200 bg-white overflow-hidden">
@@ -155,38 +129,7 @@ export function NoticeTable({ notices }: NoticeTableProps) {
                 </div>
               </TableCell>
               <TableCell className="py-4">
-                <div className="flex items-center gap-1">
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="h-8 w-8 text-gray-600 hover:text-gray-900"
-                  >
-                    <Eye className="size-5" />
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="h-8 w-8 text-gray-600 hover:text-gray-900"
-                  >
-                    <Edit className="size-5" />
-                  </Button>
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="h-8 w-8 text-gray-600 hover:text-gray-900"
-                      >
-                        <MoreVertical className="size-5" />
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                      <DropdownMenuItem>Edit</DropdownMenuItem>
-                      <DropdownMenuItem>Duplicate</DropdownMenuItem>
-                      <DropdownMenuItem className="text-red-600">Delete</DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                </div>
+                <TableActions notice={notice} />
               </TableCell>
             </TableRow>
           ))}
