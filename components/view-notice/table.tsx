@@ -48,7 +48,7 @@ export function NoticeTable({ notices }: { notices: Notice[] }) {
   };
 
   const handleSelectAll = (checked: boolean) => {
-    if (checked) {
+    if (checked && notices) {
       const allIds = new Set(notices.map((notice) => notice._id));
       setSelectedRows(allIds);
     } else {
@@ -66,7 +66,7 @@ export function NoticeTable({ notices }: { notices: Notice[] }) {
     setSelectedRows(newSelected);
   };
 
-  const isAllSelected = notices?.length > 0 && selectedRows?.size === notices?.length;
+  const isAllSelected = notices && notices.length > 0 && selectedRows?.size === notices.length;
 
   return (
     <div className="rounded-lg border border-gray-200 bg-white overflow-hidden">
