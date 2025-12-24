@@ -21,6 +21,7 @@ import { TargetDepartmentField } from './target-department-field';
 export function CreateNoticeWrapper() {
   const router = useRouter();
   const [files, setFiles] = React.useState<File[]>([]);
+   const [uploadedUrls, setUploadedUrls] = React.useState<string[]>([])
   const [showSuccessDialog, setShowSuccessDialog] = React.useState(false);
   const [publishedNoticeTitle, setPublishedNoticeTitle] = React.useState('');
   const createNoticeMutation = useCreateNotice();
@@ -44,11 +45,19 @@ export function CreateNoticeWrapper() {
     router.back();
   };
 
+    const handleUploadComplete = (uploadedFiles: {url: string}[]) => {
+    console.log('Files uploaded:', uploadedFiles);
+
+    const urls = uploadedFiles?.map(f => f.url);
+    setUploadedUrls(prev => [...prev, ...urls]);
+    
+  };
+
   const handleSaveDraft = async (data: CreateNoticeFormData) => {
     try {
       await createNoticeMutation.mutateAsync({
         ...data,
-        attachments: [],
+        attachments: uploadedUrls?.length ? uploadedUrls : [],
         status: 'draft',
         publishDate: new Date(data?.publishDate).toISOString(),
       });
@@ -62,7 +71,7 @@ export function CreateNoticeWrapper() {
     try {
       await createNoticeMutation.mutateAsync({
         ...data,
-        attachments: [],
+        attachments: uploadedUrls?.length ? uploadedUrls : [],
         status: 'published',
         publishDate: new Date(data?.publishDate).toISOString(),
       });
@@ -102,13 +111,12 @@ export function CreateNoticeWrapper() {
 
             <NoticeBodyField form={form} />
 
-            <FileUpload
+             <FileUpload
               value={files}
-              onChange={(newFiles) => {
-                setFiles(newFiles);
-                form.setValue('attachments', newFiles);
-              }}
+              onChange={setFiles}
+              onUploadComplete={handleUploadComplete}
               acceptedTypes="jpg, png, pdf"
+              autoUpload={false}
             />
 
             <FormActions
