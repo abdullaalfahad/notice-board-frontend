@@ -12,13 +12,12 @@ export function CreateNoticeHeader() {
       <Button
         variant="ghost"
         size="icon"
-        className="rounded-full bg-[#F5F6FA] hover:bg-[#E5E7EB]"
+        className="rounded-md border-[#9CA3AF] border h-8 hover:bg-[#E5E7EB]"
         onClick={() => router.back()}
       >
         <ArrowLeft className="h-4 w-4 text-foreground" />
       </Button>
-      <h1 className="text-2xl font-semibold text-foreground">Create a Notice</h1>
+      <h1 className="text-xl font-semibold text-foreground">Create a Notice</h1>
     </div>
   );
 }
-

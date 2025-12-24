@@ -21,7 +21,7 @@ import { TargetDepartmentField } from './target-department-field';
 export function CreateNoticeWrapper() {
   const router = useRouter();
   const [files, setFiles] = React.useState<File[]>([]);
-   const [uploadedUrls, setUploadedUrls] = React.useState<string[]>([])
+  const [uploadedUrls, setUploadedUrls] = React.useState<string[]>([]);
   const [showSuccessDialog, setShowSuccessDialog] = React.useState(false);
   const [publishedNoticeTitle, setPublishedNoticeTitle] = React.useState('');
   const createNoticeMutation = useCreateNotice();
@@ -45,12 +45,9 @@ export function CreateNoticeWrapper() {
     router.back();
   };
 
-    const handleUploadComplete = (uploadedFiles: {url: string}[]) => {
-    console.log('Files uploaded:', uploadedFiles);
-
-    const urls = uploadedFiles?.map(f => f.url);
-    setUploadedUrls(prev => [...prev, ...urls]);
-    
+  const handleUploadComplete = (uploadedFiles: { url: string }[]) => {
+    const urls = uploadedFiles?.map((f) => f.url);
+    setUploadedUrls((prev) => [...prev, ...urls]);
   };
 
   const handleSaveDraft = async (data: CreateNoticeFormData) => {
@@ -89,21 +86,20 @@ export function CreateNoticeWrapper() {
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full pb-20">
       <CreateNoticeHeader />
 
-      <div className="bg-white rounded-lg border border-[#E2E8F0] p-6">
-        <div className="bg-[#F5F6FA] rounded-md p-4 mb-6">
+      <div className="bg-white rounded-lg border border-[#9096B1]">
+        <div className="bg-[#F5F6FA] rounded-t-md p-4 border-[#9096B1] border-b">
           <p className="text-sm text-[#64748B]">Please fill in the details below</p>
         </div>
 
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(handlePublish)} className="space-y-4">
+          <form onSubmit={form.handleSubmit(handlePublish)} className="space-y-4 px-5 py-6">
             <TargetDepartmentField form={form} />
             <NoticeTitleField form={form} />
             <EmployeeFields form={form} />
 
-            {/* Notice Type and Publish Date - Same Row */}
             <div className="grid grid-cols-2 gap-4">
               <NoticeTypeField form={form} />
               <PublishDateField form={form} />
@@ -111,23 +107,23 @@ export function CreateNoticeWrapper() {
 
             <NoticeBodyField form={form} />
 
-             <FileUpload
+            <FileUpload
               value={files}
               onChange={setFiles}
               onUploadComplete={handleUploadComplete}
               acceptedTypes="jpg, png, pdf"
               autoUpload={false}
             />
-
-            <FormActions
-              onCancel={handleCancel}
-              onSaveDraft={() => form.handleSubmit(handleSaveDraft)()}
-              onPublish={form.handleSubmit(handlePublish)}
-              isLoading={createNoticeMutation.isPending}
-            />
           </form>
         </Form>
       </div>
+
+      <FormActions
+        onCancel={handleCancel}
+        onSaveDraft={() => form.handleSubmit(handleSaveDraft)()}
+        onPublish={form.handleSubmit(handlePublish)}
+        isLoading={createNoticeMutation.isPending}
+      />
 
       <SuccessDialog
         isOpen={showSuccessDialog}

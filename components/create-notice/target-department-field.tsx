@@ -24,12 +24,12 @@ export function TargetDepartmentField({ form }: TargetDepartmentFieldProps) {
         render={({ field }) => (
           <FormItem className="space-y-1.5">
             <FormLabel className="text-sm font-medium text-[#1E293B]">
-              <span className="text-[#EF4444] mr-1">*</span>
+              <span className="text-[#EF4444]">*</span>
               Target Department(s) or Individual
             </FormLabel>
             <Select onValueChange={field.onChange} value={field.value}>
               <FormControl>
-                <SelectTrigger className="w-full h-10 text-[#595F7A] border-[#CBD5E1] border">
+                <SelectTrigger className="w-full h-11 bg-[#F8FAFC] border-slate-200 text-slate-600 focus:ring-0 focus:ring-offset-0">
                   <SelectValue />
                 </SelectTrigger>
               </FormControl>

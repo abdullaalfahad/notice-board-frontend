@@ -1,13 +1,7 @@
 'use client';
 
 import { Checkbox } from '@/components/ui/checkbox';
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
+import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { cn } from '@/lib/utils';
 import { UseFormReturn } from 'react-hook-form';
@@ -35,7 +29,7 @@ export function NoticeTypeField({ form }: NoticeTypeFieldProps) {
       render={({ field }) => (
         <FormItem className="space-y-1.5">
           <FormLabel className="text-sm font-medium text-[#1E293B]">
-            <span className="text-[#EF4444] mr-1">*</span>
+            <span className="text-[#EF4444]">*</span>
             Notice Type
           </FormLabel>
           <Popover>
@@ -93,4 +87,3 @@ export function NoticeTypeField({ form }: NoticeTypeFieldProps) {
     />
   );
 }
-

@@ -31,7 +31,7 @@ export function SuccessDialog({
 
   const handleViewNotice = () => {
     onClose();
-    router.push('/notice-board');
+    router.push('/');
   };
 
   const handleCreateAnother = () => {
@@ -89,4 +89,3 @@ export function SuccessDialog({
     </Dialog>
   );
 }
-

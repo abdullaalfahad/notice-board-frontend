@@ -1,13 +1,7 @@
 'use client';
 
 import { Calendar } from '@/components/ui/calendar';
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
+import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { cn } from '@/lib/utils';
 import { format } from 'date-fns';
@@ -39,7 +33,7 @@ export function PublishDateField({ form }: PublishDateFieldProps) {
       render={({ field }) => (
         <FormItem className="space-y-1.5">
           <FormLabel className="text-sm font-medium text-[#1E293B]">
-            <span className="text-[#EF4444] mr-1">*</span>
+            <span className="text-[#EF4444]">*</span>
             Publish Date
           </FormLabel>
           <Popover>
@@ -76,4 +70,3 @@ export function PublishDateField({ form }: PublishDateFieldProps) {
     />
   );
 }
-

@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Pencil, Plus } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 interface NoticeHeaderProps {
   activeCount: number;
@@ -7,6 +8,8 @@ interface NoticeHeaderProps {
 }
 
 export function NoticeHeader({ activeCount, draftCount }: NoticeHeaderProps) {
+  const router = useRouter();
+
   return (
     <div className="flex items-start justify-between">
       <div>
@@ -24,7 +27,10 @@ export function NoticeHeader({ activeCount, draftCount }: NoticeHeaderProps) {
         </div>
       </div>
       <div className="flex gap-2">
-        <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
+        <Button
+          className="bg-primary text-primary-foreground hover:bg-primary/90"
+          onClick={() => router.push('/create-notice')}
+        >
           <Plus className="mr-1 h-4 w-4" />
           Create Notice
         </Button>

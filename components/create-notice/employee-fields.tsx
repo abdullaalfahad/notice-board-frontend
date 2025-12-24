@@ -1,12 +1,6 @@
 'use client';
 
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
+import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import {
   Select,
@@ -31,12 +25,12 @@ export function EmployeeFields({ form }: EmployeeFieldsProps) {
         render={({ field }) => (
           <FormItem className="space-y-1.5">
             <FormLabel className="text-sm font-medium text-[#1E293B]">
-              <span className="text-[#EF4444] mr-1">*</span>
+              <span className="text-[#EF4444]">*</span>
               Select Employee ID
             </FormLabel>
             <Select onValueChange={field.onChange} value={field.value}>
               <FormControl>
-                <SelectTrigger className="w-full h-10 text-[#595F7A] border-[#CBD5E1] border">
+                <SelectTrigger className="w-full py-4.5 text-[#595F7A] border-[#CBD5E1] border">
                   <SelectValue placeholder="Select employee id" />
                 </SelectTrigger>
               </FormControl>
@@ -64,7 +58,7 @@ export function EmployeeFields({ form }: EmployeeFieldsProps) {
         render={({ field }) => (
           <FormItem className="space-y-1.5">
             <FormLabel className="text-sm font-medium text-[#1E293B]">
-              <span className="text-[#EF4444] mr-1">*</span>
+              <span className="text-[#EF4444]">*</span>
               Employee Name
             </FormLabel>
             <FormControl>
@@ -85,7 +79,7 @@ export function EmployeeFields({ form }: EmployeeFieldsProps) {
         render={({ field }) => (
           <FormItem className="space-y-1.5">
             <FormLabel className="text-sm font-medium text-[#1E293B]">
-              <span className="text-[#EF4444] mr-1">*</span>
+              <span className="text-[#EF4444]">*</span>
               Position
             </FormLabel>
             <FormControl>
@@ -102,4 +96,3 @@ export function EmployeeFields({ form }: EmployeeFieldsProps) {
     </div>
   );
 }
-
