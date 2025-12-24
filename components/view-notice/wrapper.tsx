@@ -1,6 +1,7 @@
 'use client';
 
 import { useGetAllNotices } from '@/hooks/use-get-all-notices';
+import { isSameDay } from 'date-fns';
 import * as React from 'react';
 import { NoticeFilters } from './filters';
 import { NoticeHeader } from './header';
@@ -32,8 +33,7 @@ export const NoticeWrapper = () => {
         notice.employeeId?.toLowerCase().includes(searchQuery.toLowerCase());
 
       const matchesDate =
-        !date ||
-        (notice.publishDate && new Date(notice.publishDate).toDateString() === date.toDateString());
+        !date || (notice.publishDate && isSameDay(new Date(notice.publishDate), date));
 
       return matchesSearch && matchesDate;
     });

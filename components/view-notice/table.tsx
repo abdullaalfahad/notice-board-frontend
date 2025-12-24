@@ -9,6 +9,7 @@ import {
 } from '@/components/ui/table';
 import { cn } from '@/lib/utils';
 import { Notice } from '@/types/notice-types';
+import { format } from 'date-fns';
 import { useState } from 'react';
 import { TableActions } from './table-actions';
 
@@ -16,12 +17,8 @@ export function NoticeTable({ notices }: { notices: Notice[] }) {
   const [selectedRows, setSelectedRows] = useState<Set<string>>(new Set());
 
   const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('en-GB', {
-      day: '2-digit',
-      month: 'short',
-      year: 'numeric',
-    });
+    if (!dateString) return '';
+    return format(new Date(dateString), 'dd MMMM, yyyy');
   };
 
   const getDepartmentColor = (targetType: string, employeeName?: string) => {

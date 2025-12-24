@@ -11,14 +11,11 @@ import {
 import { Notice } from '@/types/notice-types';
 import { Label } from '../ui/label';
 
+import { format } from 'date-fns';
+
 function formatDate(dateString: string): string {
-  const date = new Date(dateString);
-  const options: Intl.DateTimeFormatOptions = {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  };
-  return date.toLocaleDateString(undefined, options);
+  if (!dateString) return '';
+  return format(new Date(dateString), 'dd MMMM, yyyy');
 }
 
 function formatDateTime(dateString: string): string {

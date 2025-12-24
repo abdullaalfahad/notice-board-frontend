@@ -1,14 +1,10 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
+import { format } from 'date-fns';
 import { Bell } from 'lucide-react';
 
 export function Topbar() {
   const currentDate = new Date();
-  const formattedDate = currentDate.toLocaleDateString('en-US', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-  });
 
   const getGreeting = () => {
     const hour = currentDate.getHours();
@@ -21,7 +17,7 @@ export function Topbar() {
     <div className="flex h-16 items-center justify-between border-b border-border bg-card px-8">
       <div>
         <h2 className="text-base font-medium text-foreground">{getGreeting()} Asif</h2>
-        <p className="text-sm text-[#232948]">{formattedDate}</p>
+        <p className="text-sm text-[#64748B]">{format(currentDate, 'dd MMMM, yyyy')}</p>
       </div>
 
       <div className="flex items-center gap-2 justify-center">
