@@ -23,6 +23,8 @@ export function PublishDateField({ form }: PublishDateFieldProps) {
   React.useEffect(() => {
     if (publishDateValue) {
       setDate(new Date(publishDateValue));
+    } else {
+      setDate(undefined);
     }
   }, [publishDateValue]);
 
