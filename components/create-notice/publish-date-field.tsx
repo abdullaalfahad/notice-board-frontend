@@ -51,7 +51,10 @@ export function PublishDateField({ form }: PublishDateFieldProps) {
                 </button>
               </FormControl>
             </PopoverTrigger>
-            <PopoverContent className="w-auto p-0 bg-white" align="start">
+            <PopoverContent
+              className="w-auto p-0 bg-white shadow-md border rounded-md"
+              align="start"
+            >
               <Calendar
                 mode="single"
                 selected={date}

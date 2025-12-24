@@ -74,7 +74,7 @@ export function NoticeFilters({
             <CalendarIcon className="h-4 w-4 text-[#8C92AF]" />
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="w-auto p-0 bg-white" align="end">
+        <PopoverContent className="w-auto p-0 bg-white shadow-md border rounded-md" align="end">
           <Calendar mode="single" selected={date} onSelect={onDateChange} initialFocus />
         </PopoverContent>
       </Popover>
