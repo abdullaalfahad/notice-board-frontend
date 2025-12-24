@@ -73,6 +73,8 @@ export function CreateNoticeWrapper() {
         publishDate: new Date(data?.publishDate).toISOString(),
       });
       setPublishedNoticeTitle(data.noticeTitle);
+      form.reset();
+      setFiles([]);
       setShowSuccessDialog(true);
     } catch (error) {
       console.error('Error publishing notice:', error);

@@ -171,7 +171,7 @@ export function FileUpload({
       {error && <div className="text-sm text-red-600 mt-2">{error}</div>}
 
       {/* Pending files (not yet uploaded) */}
-      {files.length > 0 && (
+      {files?.length > 0 && (
         <div className="space-y-2 mt-2">
           <div className="flex items-center justify-between">
             <div className="flex flex-wrap gap-2">
