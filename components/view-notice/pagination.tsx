@@ -1,8 +1,8 @@
 'use client';
 
+import { cn } from '@/lib/utils';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { Button } from '../ui/button';
-import { cn } from '@/lib/utils';
 
 interface NoticePaginationProps {
   currentPage: number;
@@ -74,8 +74,8 @@ export const NoticePagination = ({
   return (
     <div className="flex items-center justify-center gap-2">
       <Button
-        variant="outline"
-        className="bg-transparent border-0"
+        variant="ghost"
+        className="bg-transparent border-0 hover:bg-blue-50 hover:text-[#3B82F6]"
         onClick={handlePrevious}
         disabled={currentPage === 1}
       >
@@ -94,8 +94,9 @@ export const NoticePagination = ({
         return (
           <Button
             key={pageNum}
+            variant="ghost"
             className={cn(
-              'px-3.5 rounded bg-transparent',
+              'px-3.5 rounded bg-transparent hover:bg-blue-50 hover:text-[#3B82F6]',
               currentPage === pageNum
                 ? 'border border-[#3B82F6] text-[#3B82F6]'
                 : 'text-[#595F7A] border-0'
@@ -107,8 +108,8 @@ export const NoticePagination = ({
         );
       })}
       <Button
-        variant="outline"
-        className="bg-transparent border-0"
+        variant="ghost"
+        className="bg-transparent border-0 hover:bg-blue-50 hover:text-[#3B82F6]"
         onClick={handleNext}
         disabled={currentPage === totalPages}
       >
