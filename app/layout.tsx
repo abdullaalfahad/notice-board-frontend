@@ -1,3 +1,4 @@
+import { MainScrollArea } from '@/components/layouts/main-scroll-area';
 import { Sidebar } from '@/components/layouts/sidebar';
 import { Topbar } from '@/components/layouts/topbar';
 import QueryProvider from '@/providers/query-provider';
@@ -33,7 +34,9 @@ export default function RootLayout({
           <div className="flex flex-1 flex-col overflow-hidden">
             <Topbar />
             <QueryProvider>
-              <main className="flex-1 overflow-y-auto bg-[#F5F6FA] px-5 py-7">{children}</main>
+              <QueryProvider>
+                <MainScrollArea>{children}</MainScrollArea>
+              </QueryProvider>
             </QueryProvider>
           </div>
         </div>
