@@ -2,6 +2,7 @@
 
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
+import { useDeleteFile, useUploadFile } from '@/hooks/use-upload-file';
 import { cn } from '@/lib/utils';
 import { CloudUpload, FileText, Loader2, X } from 'lucide-react';
 import * as React from 'react';
@@ -37,7 +38,8 @@ export function FileUpload({
   const fileInputRef = React.useRef<HTMLInputElement>(null);
   const [files, setFiles] = React.useState<File[]>(value);
   const [isDragging, setIsDragging] = React.useState(false);
-  const [isUploading, setIsUploading] = React.useState(false);
+  const { mutateAsync: uploadFile, isPending: isUploading } = useUploadFile();
+  const { mutateAsync: deleteFile } = useDeleteFile();
   const [uploadedFiles, setUploadedFiles] = React.useState<UploadedFile[]>([]);
   const [error, setError] = React.useState<string | null>(null);
 
@@ -46,25 +48,10 @@ export function FileUpload({
   }, [value]);
 
   const uploadFiles = async (filesToUpload: File[]) => {
-    setIsUploading(true);
     setError(null);
 
-    const formData = new FormData();
-    filesToUpload.forEach((file) => {
-      formData.append('files', file);
-    });
-
     try {
-      const response = await fetch('http://localhost:5000/api/v1/uploads', {
-        method: 'POST',
-        body: formData,
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.message || 'Upload failed');
-      }
+      const data = await uploadFile(filesToUpload);
 
       setUploadedFiles((prev) => [...prev, ...data?.data]);
       onUploadComplete?.(data?.data);
@@ -80,8 +67,6 @@ export function FileUpload({
       const errorMessage = err instanceof Error ? err.message : 'Upload failed';
       setError(errorMessage);
       console.error('Upload error:', err);
-    } finally {
-      setIsUploading(false);
     }
   };
 
@@ -109,12 +94,7 @@ export function FileUpload({
     const fileToRemove = uploadedFiles[index];
 
     try {
-      // Optional: Delete from Cloudinary
-      await fetch(
-        `http://localhost:5000/api/v1/uploads/delete/${fileToRemove.publicId?.split('/')[1]}`,
-        { method: 'DELETE' }
-      );
-
+      await deleteFile(fileToRemove.publicId);
       setUploadedFiles((prev) => prev.filter((_, i) => i !== index));
     } catch (err) {
       console.error('Delete error:', err);
