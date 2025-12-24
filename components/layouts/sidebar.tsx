@@ -127,6 +127,7 @@ export function Sidebar() {
             width={200}
             height={200}
             className="object-contain size-40"
+            priority
           />
         </Link>
       </div>
@@ -154,7 +155,7 @@ export function Sidebar() {
                     )}
                   </Button>
                   {expandedItems.includes(item.title) && (
-                    <ul className="-mt-1 pl-6 space-y-1 pt-2 bg-[#F5F6FA] border-l border-border border-[#CBD5E1] border-r border-b rounded-br-md rounded-bl-md">
+                    <ul className="-mt-1 pl-6 space-y-1 pt-2 bg-[#F5F6FA] border-l border-[#CBD5E1] border-r border-b rounded-br-md rounded-bl-md">
                       {item.children.map((child) => (
                         <li key={child.title}>
                           <Link
@@ -178,7 +179,7 @@ export function Sidebar() {
                     className={cn(
                       'w-full justify-start gap-3 px-3 py-2 text-sm font-normal text-muted-foreground hover:bg-accent hover:text-accent-foreground',
                       isActive(item.href) &&
-                        'text-foreground bg-[#F5F6FA] border-r-1 border-[#FF3E01]'
+                        'text-foreground bg-[#F5F6FA] border-r border-[#FF3E01]'
                     )}
                   >
                     <item.icon className="h-4 w-4 shrink-0" />

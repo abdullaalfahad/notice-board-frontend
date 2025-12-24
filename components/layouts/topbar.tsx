@@ -26,7 +26,7 @@ export function Topbar() {
           <span className="absolute right-3 top-2.5 size-[5px] rounded-full bg-primary" />
         </Button>
 
-        <div className="w-[1px] h-4 bg-[#8C92AF] mr-2"></div>
+        <div className="w-px h-4 bg-[#8C92AF] mr-2"></div>
 
         <div className="flex items-center gap-3">
           <div className="text-right">
