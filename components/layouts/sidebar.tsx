@@ -109,10 +109,17 @@ export function Sidebar() {
     );
   };
 
-  const isActive = (href: string) => href === '/';
+  const isActive = (href: string) => {
+    if (href === '/') return pathname === '/' || pathname === '/create-notice';
+    return pathname === href;
+  };
+
   const isParentActive = (item: NavItem) => {
     if (item.children) {
-      return item.children.some((child) => pathname === child.href);
+      return (
+        item.children.some((child) => pathname === child.href) ||
+        (item.href !== '/' && pathname.startsWith(item.href))
+      );
     }
     return false;
   };
